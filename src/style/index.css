@@ -1,0 +1,19 @@
+html, body {
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	background-image: -webkit-linear-gradient(30deg, rgb(223, 213, 202) 50%, rgb(218, 199, 178) 50%);
+	font-family: 'Helvetica Neue', arial, sans-serif;
+	font-weight: 400;
+	color: #444;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+#app {
+	height: 100%;
+}
