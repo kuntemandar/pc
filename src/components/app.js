@@ -5,6 +5,7 @@ import Header from './header';
 
 // Code-splitting is automated for routes
 import Home from '../routes/home';
+import Chat from '../routes/chat';
 
 export default class App extends Component {
 	
@@ -22,6 +23,7 @@ export default class App extends Component {
 				<Header />
 				<Router onChange={this.handleRoute}>
 					<Home path="/" />
+					<Chat path="/chat" />
 				</Router>
 			</div>
 		);
