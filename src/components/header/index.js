@@ -1,15 +1,22 @@
 import { h } from 'preact';
 import { Link } from 'preact-router/match';
-import style from './style.css';
+import TopAppBar from 'preact-material-components/TopAppBar';
+import 'preact-material-components/TopAppBar/style.css';
 
 const Header = () => (
-	<header class={style.header}>
-		<h1>Classroom</h1>
-		<nav>
-			<Link activeClassName={style.active} href="/">Home</Link>
-			<Link activeClassName={style.active} href="/profile">About</Link>
-		</nav>
-	</header>
+	<TopAppBar className="topappbar">
+	<TopAppBar.Row>
+	  <TopAppBar.Section align-start>
+		<TopAppBar.Title>
+		  Classrooms
+		</TopAppBar.Title>
+	  </TopAppBar.Section>
+	  <TopAppBar.Section align-end>
+	  </TopAppBar.Section>
+	</TopAppBar.Row>
+  </TopAppBar>
+
+	
 );
 
 export default Header;
