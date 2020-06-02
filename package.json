@@ -35,7 +35,6 @@
     "preact-material-components": "^1.6.1",
     "preact-render-to-string": "^5.1.4",
     "preact-router": "^3.2.1",
-    "query-string": "^6.12.1",
     "sass-loader": "^8.0.2",
     "socket.io-client": "^2.3.0"
   },

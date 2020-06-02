@@ -1,6 +1,5 @@
 html, body {
 	height: 100%;
-	width: 100%;
 	margin: 0;
 	background-color:  rgb(242, 239, 247);
 	font-family: 'Helvetica Neue', arial, sans-serif;
@@ -8,7 +7,7 @@ html, body {
 	color: #444;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	font-family: Roboto, sans-serif;
+  font-family: Roboto, sans-serif;
 }
 
 * {
@@ -18,5 +17,26 @@ html, body {
 #app {
 	height: 100%;
 }
-
+@font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://fonts.gstatic.com/s/materialicons/v50/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2) format('woff2');
+  }
+  
+  .material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 50px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+  }
 /* background-image: -webkit-linear-gradient(30deg, rgb(207, 188, 218) 50%, rgb(219, 199, 245) 50%); */

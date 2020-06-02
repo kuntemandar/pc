@@ -21,6 +21,29 @@
  *       - Debug children
  *
  */
+ 
+ @media (min-width: 320px) and (max-width: 480px) {
+  .outerContainer {
+    height: 100%;
+  }
+
+  .container {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 1200px) {
+  .container {
+    width: 60%;
+  }
+}
+
+input:focus, textarea:focus, select:focus{
+  outline: none;
+}
+
+.wwrap-brk { word-wrap: break-word;}
  .dg {
   display: grid;
 }
@@ -882,9 +905,9 @@
  .h1 { height: 1rem; }
  .h2 { height: 2rem; }
  .h2p5 { height: 2.5rem; }
- .h3 { height: 4rem; }
- .h4 { height: 8rem; }
- .h5 { height: 16rem; }
+ .h3 { height: 3rem; }
+ .h4 { height: 4rem; }
+ .h5 { height: 8rem; }
  /* Height Percentages - Based off of height of parent */
  .h-25 { height: 25%; }
  .h-50 { height: 50%; }
@@ -911,6 +934,7 @@
       -l  = large
  
  */
+ .ls-none { letter-spacing: 0;}
  .tracked { letter-spacing: .1em; }
  .tracked-tight { letter-spacing: -.05em; }
  .tracked-mega { letter-spacing: .25em; }
@@ -928,6 +952,7 @@
  .lh-solid { line-height: 1; }
  .lh-title { line-height: 1.25; }
  .lh-copy { line-height: 1.5; }
+ .lh-title { line-height: 4rem;}
  /*
  
     LINKS
@@ -978,6 +1003,7 @@
  */
  /* Max Width Percentages */
  .mw-100 { max-width: 100%; }
+ .mw-80 { max-width: 80%; }
  /* Max Width Scale */
  .mw1 { max-width: 1rem; }
  .mw2 { max-width: 2rem; }
@@ -1170,7 +1196,7 @@
  .gold { color: #ffb700; }
  .yellow { color: #ffd700; }
  .light-yellow { color: #fbf1a9; }
- .purple { color: #5e2ca5; }
+ .purple { color: rgb(98, 0, 238); }
  .light-purple { color: #a463f2; }
  .dark-pink { color: #d5008f; }
  .hot-pink { color: #ff41b4; }
