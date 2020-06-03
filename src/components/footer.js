@@ -4,8 +4,12 @@ import GitHub from "../assets/icons/github.png";
 import Twitter from "../assets/icons/twitter.png";
 
 export default () => (
-  <footer style={{minHeight: '8vh'}} className="pa2 ph3 flex justify-end bg-purple">
-   <a href="https://twitter.com/mandarkunte">
+  <footer
+    style={{ minHeight: "8vh" }}
+    className="pa2 ph3 flex justify-end bg-purple"
+  >
+    <i style={{marginRight: 'auto'}} class="self-start orange f3 mh2 material-icons">copyright</i>
+    <a href="https://twitter.com/mandarkunte">
       <img className="h2 mh2" src={Twitter} />
     </a>
     <a href="https://www.linkedin.com/in/mandar-kunte-b4838617/">

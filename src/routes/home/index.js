@@ -35,7 +35,7 @@ const Home = () => {
           onChange={(event) => setRoom(event.target.value)}
         />
         <button
-          className="br3 bg-purple white h3"
+          className="br3 ba bg-purple white h3"
           onClick={(e) => {
             if (!name || !room) {
               e.preventDefault();

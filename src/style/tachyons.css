@@ -441,7 +441,7 @@ input:focus, textarea:focus, select:focus{
  .b--gold { border-color: #ffb700; }
  .b--yellow { border-color: #ffd700; }
  .b--light-yellow { border-color: #fbf1a9; }
- .b--purple { border-color: #5e2ca5; }
+ .b--purple { border-color: rgb(98, 0, 238); }
  .b--light-purple { border-color: #a463f2; }
  .b--dark-pink { border-color: #d5008f; }
  .b--hot-pink { border-color: #ff41b4; }
