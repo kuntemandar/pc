@@ -21,27 +21,11 @@
  *       - Debug children
  *
  */
- 
- @media (min-width: 320px) and (max-width: 480px) {
-  .outerContainer {
-    height: 100%;
-  }
-
-  .container {
-    width: 100%;
-    height: 100%;
-  }
-}
-
-@media (min-width: 480px) and (max-width: 1200px) {
-  .container {
-    width: 60%;
-  }
-}
 
 input:focus, textarea:focus, select:focus{
   outline: none;
 }
+
 
 .wwrap-brk { word-wrap: break-word;}
  .dg {
@@ -867,7 +851,7 @@ input:focus, textarea:focus, select:focus{
     FORMS
     
  */
- .input-reset { -webkit-appearance: none; -moz-appearance: none; }
+ .input-reset { -webkit-appearance: none; -moz-appearance: none;}
  .button-reset::-moz-focus-inner, .input-reset::-moz-focus-inner { border: 0; padding: 0; }
  /*
  
@@ -1192,7 +1176,7 @@ input:focus, textarea:focus, select:focus{
  .dark-red { color: #e7040f; }
  .red { color: #ff4136; }
  .light-red { color: #ff725c; }
- .orange { color: #ff6300; }
+ .orange { color: #ec762b; }
  .gold { color: #ffb700; }
  .yellow { color: #ffd700; }
  .light-yellow { color: #fbf1a9; }

@@ -1,5 +1,5 @@
 import { h } from 'preact';
-import onlineIcon from '../icons/onlineIcon.png';
+import onlineIcon from '../assets/icons/onlineIcon.png';
 
 const TextContainer = ({ users }) => (
   <div className="flex flex-column ml2 white h3 justify-between">

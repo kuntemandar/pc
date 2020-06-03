@@ -1,7 +1,7 @@
 import { h } from "preact";
 
-import onlineIcon from '../icons/onlineIcon.png';
-import closeIcon from '../icons/closeIcon.png';
+import onlineIcon from '../assets/icons/onlineIcon.png';
+import closeIcon from '../assets/icons/closeIcon.png';
 
 const InfoBar = ({ room }) => (
   <div style={{
