@@ -14,7 +14,7 @@ export default ({ matches, url }) => {
     const [users, setUsers] = useState('');
     const [message, setMessage] = useState('');
     const [messages, setMessages] = useState([]);
-    const ENDPOINT = 'http://localhost:5000/' // 'https://classroom-messenger.herokuapp.com/';
+    const ENDPOINT = 'https://classroom-messenger.herokuapp.com/';
   
     useEffect(() => {
       const { name, room } = matches
@@ -49,10 +49,10 @@ export default ({ matches, url }) => {
     }
 
     return (
-        <div className="outerContainer">
-          <div className='conatiner w-60 h-60 vh-75-ns  flex flex-column justify-between h3 br1'>
+        <div data-e2e='chat-container'>
+          <div className='conatiner flex flex-column justify-between h3'>
           <InfoBar room={room} />
-          <Messages messages={messages} name={name} />
+          <div className='min-h-80 overflow-y-auto'><Messages messages={messages} name={name} /></div>
           <Input message={message} setMessage={setMessage} sendMessage={sendMessage} />
           {/* <TextContainer users={users}/> */}
           </div>

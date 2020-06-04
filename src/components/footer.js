@@ -5,10 +5,10 @@ import Twitter from "../assets/icons/twitter.png";
 
 export default () => (
   <footer
-    style={{ minHeight: "8vh" }}
+    style={{ borderTop : 'darkblue 4px solid',minHeight: "8vh" }}
     className="pa2 ph3 flex justify-end bg-purple"
   >
-    <i style={{marginRight: 'auto'}} class="self-start orange f3 mh2 material-icons">copyright</i>
+    <i style={{marginRight: 'auto', lineHeight: '5vh'}} class="self-start orange f3 material-icons">help</i>
     <a href="https://twitter.com/mandarkunte">
       <img className="h2 mh2" src={Twitter} />
     </a>

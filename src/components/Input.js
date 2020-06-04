@@ -1,28 +1,34 @@
 import { h } from "preact";
 
-import Button from "preact-material-components/Button";
-import "preact-material-components/Button/style.css";
-
 const Input = ({ setMessage, sendMessage, message }) => (
-  <form className="flex">
+  <form data-e2e="message-form" type='submit' className="min-h-10 flex">
     <input
-      className="pa1 w-100 f4 nofocus"
+      style={{
+        borderColor: 'transparent',
+        borderTop: "darkblue 4px solid"
+      }}
+      data-e2e="message-input"
+      className="pl2 ba w-100 bg-transparent"
       type="text"
-      placeholder="Type a message..."
       value={message}
       onChange={({ target: { value } }) => setMessage(value)}
       onKeyPress={(event) =>
         event.key === "Enter" ? sendMessage(event) : null
       }
     />
-    <Button
-      style={{ height: "45px" }}
-      onClick={e => sendMessage(e)}
+    <button
+      style={{
+        borderColor: 'transparent',
+        borderTop: "darkblue 4px solid"
+      }}
+      data-e2e="message-send"
+      className="bg-purple white pa3"
+      onClick={(e) => sendMessage(e)}
       ripple
       raised
     >
       Send
-    </Button>
+    </button>
   </form>
 );
 

@@ -22,7 +22,32 @@
  *
  */
 
-input:focus, textarea:focus, select:focus{
+ .mine:before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  bottom: 0;
+  right: -8px;
+  height: 20px;
+  width: 20px;
+  background: linear-gradient(to bottom, #00D0EA 0%, #0085D1 100%);
+  background-attachment: fixed;
+  border-bottom-left-radius: 15px;
+}
+
+ .yours:before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  bottom: 0;
+  left: -7px;
+  height: 20px;
+  width: 20px;
+  background: #eee;
+  border-bottom-right-radius: 15px;
+}
+
+input:focus, textarea:focus, select:focus, button:focus{
   outline: none;
 }
 
@@ -898,6 +923,8 @@ input:focus, textarea:focus, select:focus{
  .h-75 { height: 75%; }
  .h-100 { height: 100%; }
  .min-h-100 { min-height: 100%; }
+ .min-h-10 { min-height: 10vh;}
+ .min-h-80 { min-height: 80vh;}
  /* Screen Height Percentage */
  .vh-25 { height: 25vh; }
  .vh-50 { height: 50vh; }
@@ -1176,7 +1203,7 @@ input:focus, textarea:focus, select:focus{
  .dark-red { color: #e7040f; }
  .red { color: #ff4136; }
  .light-red { color: #ff725c; }
- .orange { color: #ec762b; }
+ .orange { color: #ff7b00; }
  .gold { color: #ffb700; }
  .yellow { color: #ffd700; }
  .light-yellow { color: #fbf1a9; }
