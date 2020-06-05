@@ -1,6 +1,6 @@
 import { h } from "preact";
 
-const InfoBar = ({ room }) => (
+const InfoBar = ({ room, disconnect }) => (
   <div
     style={{
       borderBottom: "4px solid darkblue"
@@ -13,9 +13,9 @@ const InfoBar = ({ room }) => (
       <span className="mh2 lh-title white bold f3">{room}</span>
     </div>
     <div className="mr2 flex justify-end">
-      <a href="/">
+      <button className='bg-transparent' onClick={() => disconnect()}>
         <span class="f3 white material-icons">close</span>
-      </a>
+      </button>
     </div>
   </div>
 );

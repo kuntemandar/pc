@@ -5,6 +5,7 @@ import InfoBar from '../../components/InfoBar'
 import Messages from '../../components/Messages'
 import Input from '../../components/Input'
 import TextContainer from '../../components/TextContainer'
+import { route } from "preact-router";
 
 let socket;
 
@@ -14,7 +15,7 @@ export default ({ matches, url }) => {
     const [users, setUsers] = useState('');
     const [message, setMessage] = useState('');
     const [messages, setMessages] = useState([]);
-    const ENDPOINT = 'https://classroom-messenger.herokuapp.com/';
+    const ENDPOINT = 'https://classroom-messenger.herokuapp.com/'; // 'http://localhost:5000'
   
     useEffect(() => {
       const { name, room } = matches
@@ -26,10 +27,15 @@ export default ({ matches, url }) => {
   
       socket.emit('join', { name, room }, (error) => {
         if(error) {
-         // alert(error);
+         alert(error);
+         socket.disconnect()
         }
+        socket.on('disconnect', function() {
+          console.log('Got disconnect!');
+          route('/')
+       });
       });
-    }, [ENDPOINT, url]);
+    }, []);
     
     useEffect(() => {
       socket.on('message', message => {
@@ -48,10 +54,15 @@ export default ({ matches, url }) => {
       }
     }
 
+    const disconnect = () => {
+      console.log('calling disconnect')
+      socket.disconnect()
+    }
+    
     return (
         <div data-e2e='chat-container'>
           <div className='conatiner flex flex-column justify-between h3'>
-          <InfoBar room={room} />
+          <InfoBar room={room} disconnect={disconnect}/>
           <div className='min-h-80 overflow-y-auto'><Messages messages={messages} name={name} /></div>
           <Input message={message} setMessage={setMessage} sendMessage={sendMessage} />
           {/* <TextContainer users={users}/> */}
