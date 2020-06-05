@@ -18,7 +18,7 @@ const Messages = ({ messages, name }) => {
     <div
       data-e2e="messages-container"
       ref={messageListRef}
-      className="flex-auto overflow-auto pv2"
+      className="flex-auto overflow-x-hidden pv2"
     >
       <div className="w-100" key={i}>
         <Message message={message} name={name} />
