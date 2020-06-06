@@ -1082,6 +1082,7 @@ input:focus, textarea:focus, select:focus, button:focus{
  .w-33 { width: 33%; }
  .w-34 { width: 34%; }
  .w-40 { width: 40%; }
+ .w-45 { width: 45%;}
  .w-50 { width: 50%; }
  .w-60 { width: 60%; }
  .w-70 { width: 70%; }
@@ -1283,6 +1284,7 @@ input:focus, textarea:focus, select:focus, button:focus{
  .bg-washed-blue { background-color: #f6fffe; }
  .bg-washed-green { background-color: #e8fdf5; }
  .bg-washed-yellow { background-color: #fffceb; }
+ .bg-washed-purple { background-color: #d6c7e9 ;}
  .bg-washed-red { background-color: #ffdfdf; }
  .bg-inherit { background-color: inherit; }
  /* 

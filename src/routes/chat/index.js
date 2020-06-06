@@ -15,7 +15,7 @@ export default ({ matches, url }) => {
     const [users, setUsers] = useState('');
     const [message, setMessage] = useState('');
     const [messages, setMessages] = useState([]);
-    const ENDPOINT = 'https://classroom-messenger.herokuapp.com/'; // 'http://localhost:5000'
+    const ENDPOINT = 'http://localhost:5000'; // 'http://localhost:5000'
   
     useEffect(() => {
       const { name, room } = matches
@@ -49,6 +49,9 @@ export default ({ matches, url }) => {
   
     const sendMessage = (event) => {
       event.preventDefault();
+      if(message.trim().toLowerCase() === ':question') {
+        setMessages(messages => [ ...messages, message ]);
+      }
       if(message) {
         socket.emit('sendMessage', message, () => setMessage(''));
       }

@@ -8,7 +8,6 @@ const Help = () => {
         </a>
       <div className="pa2 ma2">
       <h2 className='pb2'>Icons made by{" "}</h2>
-
       <ul className="lh-title list ma0 pa0">
         <li>
           <a href="https://www.flaticon.com/authors/iconixar" title="iconixar">
