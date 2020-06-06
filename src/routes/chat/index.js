@@ -6,7 +6,7 @@ import Messages from '../../components/Messages'
 import Input from '../../components/Input'
 import TextContainer from '../../components/TextContainer'
 import { route } from "preact-router";
-
+import { saveCredentials, clearCredentails } from '../../utils'
 let socket;
 
 export default ({ matches, url }) => {
@@ -15,7 +15,7 @@ export default ({ matches, url }) => {
     const [users, setUsers] = useState('');
     const [message, setMessage] = useState('');
     const [messages, setMessages] = useState([]);
-    const ENDPOINT = 'http://localhost:5000'; // 'http://localhost:5000'
+    const ENDPOINT = 'https://classroom-messenger.herokuapp.com/'; // 'http://localhost:5000'
   
     useEffect(() => {
       const { name, room } = matches
@@ -30,6 +30,7 @@ export default ({ matches, url }) => {
          alert(error);
          socket.disconnect()
         }
+        saveCredentials({name, room})
         socket.on('disconnect', function() {
           console.log('Got disconnect!');
           route('/')
@@ -59,6 +60,7 @@ export default ({ matches, url }) => {
 
     const disconnect = () => {
       console.log('calling disconnect')
+      clearCredentails()
       socket.disconnect()
     }
     

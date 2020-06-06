@@ -1,13 +1,17 @@
 import { h, Component, Fragment } from "preact";
-import { useState } from "preact/hooks";
+import { useState, useEffect } from "preact/hooks";
 import { route } from "preact-router";
 import Header from "../../components/header";
 import Footer from '../../components/footer';
-
+import { getCredentials } from '../../utils'
 const Home = () => {
-  const [name, setName] = useState("");
-  const [room, setRoom] = useState("");
+  const credentials = JSON.parse(getCredentials()) || {}
+  const [name, setName] = useState(credentials.name || '')
+  const [room, setRoom] = useState(credentials.room || '')
 
+  // if user is logged out because of inactivity, we can recoonect 
+  useEffect(() => room && name && route(`/chat?name=${name}&room=${room}`),[])
+  
   return (
     <Fragment>
     <div data-e2e='app-container' style={{minHeight: '92vh'}}>
