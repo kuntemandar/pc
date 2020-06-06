@@ -66,6 +66,7 @@ export default ({ matches, url }) => {
           <div className='min-h-80 overflow-y-auto'><Messages messages={messages} name={name} /></div>
           <Input message={message} setMessage={setMessage} sendMessage={sendMessage} />
           {/* <TextContainer users={users}/> */}
+          
           </div>
         </div>
       );

@@ -13,7 +13,7 @@ const InfoBar = ({ room, disconnect }) => (
       <span className="mh2 lh-title white bold f3">{room}</span>
     </div>
     <div className="mr2 flex justify-end">
-      <button className='bg-transparent' onClick={() => disconnect()}>
+      <button className='bn bg-transparent' onClick={() => disconnect()}>
         <span class="f3 white material-icons">close</span>
       </button>
     </div>

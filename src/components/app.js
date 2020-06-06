@@ -5,7 +5,7 @@ import { Router } from 'preact-router';
 // Code-splitting is automated for routes
 import Home from '../routes/home';
 import Chat from '../routes/chat';
-
+import Help from '../routes/help'
 export default class App extends Component {
 	
 	/** Gets fired when the route changes.
@@ -22,6 +22,7 @@ export default class App extends Component {
 				<Router onChange={this.handleRoute}>
 					<Home path="/" />
 					<Chat path="/chat" />
+					<Help path="/help" />
 				</Router>
 			</div>
 		);

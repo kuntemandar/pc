@@ -10,7 +10,7 @@ const Home = () => {
 
   return (
     <Fragment>
-    <div data-e2e='home-container' style={{minHeight: '92vh'}}>
+    <div data-e2e='app-container' style={{minHeight: '92vh'}}>
       <Header />
       <form type='submit'
         data-e2e='main-container'

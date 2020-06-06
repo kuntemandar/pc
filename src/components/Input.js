@@ -10,14 +10,15 @@ const Input = ({ setMessage, sendMessage, message }) => (
         type="text"
         value={message}
         onChange={({ target: { value } }) => setMessage(value)}
-        onKeyPress={(event) =>
-          event.key === "Enter" ? sendMessage(event) : null
+        onKeyPress={({ target: { value }, key }) => {
+          debugger
+          key === "Enter" ? sendMessage(value) : null
+        }
         }
       />
       <button
-        
         data-e2e="message-send"
-        className="lh0 bg-purple white pa3 mv3 mh2 br4"
+        className="bn lh0 bg-purple white pa3 mv3 mh2 br4"
         onClick={(e) => sendMessage(e)}
         ripple
         raised
