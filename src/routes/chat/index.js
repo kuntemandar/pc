@@ -65,14 +65,15 @@ export default ({ matches, url }) => {
     });
   }, []);
 
-  const sendMessage = (event) => {
-    event.preventDefault();
+  const sendMessage = (event, isQuestion, question) => {
+    console.log(isQuestion,'isq')
+    event && event.preventDefault()
     if (message.trim().toLowerCase() === "/question") {
-      setMessages((messages) => [...messages, message]);
+      setMessages((messages) => [...messages, {user: name, text: message}]);
       setMessage('')
     }
-    else if (message) {
-      socket.emit("sendMessage", message, () => setMessage(""));
+    else {
+      socket.emit("sendMessage", isQuestion ? question : message, isQuestion, () => setMessage(""));
     }
   };
 
