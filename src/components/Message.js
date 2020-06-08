@@ -1,24 +1,24 @@
 import { h } from "preact";
 import { useState } from "preact/hooks";
 
-const Message = ({ message: { text, user } = {}, name }) => {
+const Message = ({ message: { text, user } = {}, name, sendMessage }) => {
   const [question, setQuestion] = useState({});
   const [added, setAdded] = useState(false);
   let isSentByCurrentUser = false;
   let isQuestion = false;
   const trimmedName = name.trim().toLowerCase();
-
+  console.log(user, "user name in message");
   if (user === trimmedName) {
     isSentByCurrentUser = true;
   }
 
-  if (text === "??question") {
+  if (text === "/question") {
     isQuestion = true;
   }
 
   const addQuestion = () => {
     setAdded(true);
-    console.log(question, "asdfdfsdf");
+    sendMessage(question)
   };
   return isSentByCurrentUser ? (
     isQuestion ? (
@@ -32,7 +32,7 @@ const Message = ({ message: { text, user } = {}, name }) => {
             setQuestion((prevState) => ({ ...prevState, query: `${value}?` }));
           }}
           placeholder="Your Question here..."
-          className="bg-washed-yellow w-90 pl2 ma1 ba br3 h2p5"
+          className="bg-washed-yellow w-90 pl2 ma1 bn br3 h2p5"
         />
         <input
           data-e2e="option1-input"
@@ -43,19 +43,19 @@ const Message = ({ message: { text, user } = {}, name }) => {
             setQuestion((prevState) => ({ ...prevState, [id]: `A: ${value}` }))
           }
           placeholder="Option 1"
-          className="bg-washed-yellow w-90 pl3 ma1 ba br3 h2p5"
+          className=" w-90 pl3 ma1 bn br3 h2p5"
         />
         <input
           data-e2e="option2-input"
           disabled={added}
           id="option2"
           value={question.option2}
-          onChange={({ target: { value, id} }) =>
+          onChange={({ target: { value, id } }) =>
             setQuestion((prevState) => ({ ...prevState, [id]: `B: ${value}` }))
           }
           id="option2"
           placeholder="Option 2"
-          className="bg-washed-yellow w-90 pl3 ma1 ba br3 h2p5"
+          className=" w-90 pl3 ma1 bn br3 h2p5"
         />
         <input
           data-e2e="option3-input"
@@ -67,7 +67,7 @@ const Message = ({ message: { text, user } = {}, name }) => {
           }
           id="option3"
           placeholder="Option 3"
-          className="bg-washed-yellow w-90 pl3 ma1 ba br3 h2p5"
+          className=" w-90 pl3 ma1 bn br3 h2p5"
         />
         <input
           disabled={added}
@@ -79,10 +79,10 @@ const Message = ({ message: { text, user } = {}, name }) => {
           }
           id="option4"
           placeholder="Option 4"
-          className="bg-washed-yellow w-90 pl3 ma1 ba br3 h2p5"
+          className=" w-90 pl3 ma1 bn br3 h2p5"
         />
         <button
-          style={{ display: added ? "none" : "block" }}
+          style={{ display: added ? "none" : "inline-block" }}
           className="bn lh0 bg-purple white pa3 mv3 mh2 br4"
           onClick={(event) => {
             event.preventDefault();
@@ -94,20 +94,22 @@ const Message = ({ message: { text, user } = {}, name }) => {
       </div>
     ) : (
       <div data-e2e="self-message" className="flex ph1 mt1 justify-end">
-        <div className="white br2 pl1 pt2 bg-purple">
+        <div className="white br2 pl1 bg-purple">
           <p className="w-100 ma2 ls-none fl wwrap-brk  white-90">{text}</p>
         </div>
       </div>
     )
   ) : (
-    <div data-e2e="other-message" className="flex ph1 mt1 justify-start">
-      <div className="white br2 pl1 pt2 bg-white-90">
-        <p className="w-100 ma2 ls-none fl wwrap-brk near-black">{text}</p>
+    !isQuestion && (
+      <div data-e2e="other-message" className="flex ph1 mt1 justify-start">
+        <div className="white br2 pl1 bg-white-90">
+          <p className="w-100 ma2 ls-none fl wwrap-brk near-black">{text}</p>
+        </div>
+        <p className="flex ma2 align-center helvetica grey tracked pl1 ">
+          {user}
+        </p>
       </div>
-      <p className="flex ma2 align-center helvetica grey tracked pl1 ">
-        {user}
-      </p>
-    </div>
+    )
   );
 };
 

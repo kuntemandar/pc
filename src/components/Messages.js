@@ -2,7 +2,7 @@ import { h } from "preact";
 import Message from "./Message";
 import { useEffect, useRef } from "preact/hooks";
 
-const Messages = ({ messages, name }) => {
+const Messages = ({ messages, name, sendMessage }) => {
   const messageListRef = useRef(false);
 
   useEffect(() => {
@@ -21,7 +21,7 @@ const Messages = ({ messages, name }) => {
       className="flex-auto overflow-x-hidden pv2"
     >
       <div className="w-100" key={i}>
-        <Message message={message} name={name} />
+        <Message message={message} name={name} sendMessage={sendMessage}/>
       </div>
     </div>
   ));
