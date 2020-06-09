@@ -7,6 +7,7 @@ import Input from "../../components/Input";
 import TextContainer from "../../components/TextContainer";
 import { route } from "preact-router";
 let socket;
+let socketId;
 
 export default ({ matches, url }) => {
   const [name, setName] = useState("");
@@ -14,7 +15,7 @@ export default ({ matches, url }) => {
   const [users, setUsers] = useState("");
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
-  const ENDPOINT = "http://localhost:5000"; 
+  const ENDPOINT = "http://localhost:5000";
   //const ENDPOINT = 'https://classroom-messenger.herokuapp.com/';
 
   const joinRoom = (name, room) => {
@@ -23,7 +24,8 @@ export default ({ matches, url }) => {
         alert(error);
         socket.disconnect();
       }
-      console.log("joined");
+      socketId= socket.id
+      console.log("joined", socketId);
     });
   };
   useEffect(() => {
@@ -35,14 +37,15 @@ export default ({ matches, url }) => {
       reconnectionDelayMax: 5000,
       reconnectionAttempts: Infinity,
     });
+    
 
     socket.on("disconnect", function (e) {
       console.log("Got disconnect!", e);
 
       if (e === "io client disconnect") {
         console.log("user close event");
-        route('/')
-      } else if(socket.io.connecting.indexOf(socket) === -1){
+        route("/");
+      } else if (socket.io.connecting.indexOf(socket) === -1) {
         //you should renew token or do another important things before reconnecting
         socket.connect();
       }
@@ -53,10 +56,9 @@ export default ({ matches, url }) => {
 
     joinRoom(name, room);
     socket.on("reconnect", () => joinRoom(name, room));
-  }, []);
 
-  useEffect(() => {
     socket.on("message", (message) => {
+      console.log('got message', message)
       setMessages((messages) => [...messages, message]);
     });
 
@@ -66,16 +68,26 @@ export default ({ matches, url }) => {
   }, []);
 
   const sendMessage = (event, isQuestion, question, isAnswer, answer) => {
-    console.log(isQuestion,'isq')
-    event && event.preventDefault()
+    console.log(isQuestion, "isq");
+    event && event.preventDefault();
     if (message.trim().toLowerCase() === "/question") {
-      setMessages((messages) => [...messages, {user: name, text: message}]);
-      setMessage('')
+      setMessages((messages) => [...messages, { user: name, text: message }]);
+      setMessage("");
+    } else {
+      const textToSend = answer || question || message;
+      socket.emit("sendMessage", textToSend, isQuestion, isAnswer, () =>
+        setMessage("")
+      );
     }
-    else {
-      const textToSend = answer || question || message
-      socket.emit("sendMessage", textToSend, isQuestion, isAnswer, () => setMessage(""));
-    }
+  };
+
+  const sendQuestion = (question) => {
+    question.socketId = socketId
+    socket.emit("sendQuestion", question, () => setMessage(""));
+  };
+
+  const sendAnswer = (answer, sendToSocketId) => {
+    socket.emit("sendAnswer", answer, sendToSocketId, () => setMessage(""));
   };
 
   const disconnect = () => {
@@ -88,7 +100,13 @@ export default ({ matches, url }) => {
       <div className="conatiner flex flex-column justify-between h3">
         <InfoBar room={room} disconnect={disconnect} />
         <div className="min-h-80 overflow-y-auto">
-          <Messages messages={messages} name={name} sendMessage={sendMessage} />
+          <Messages
+            sendQuestion={sendQuestion}
+            messages={messages}
+            name={name}
+            sendMessage={sendMessage}
+            sendAnswer={sendAnswer}
+          />
         </div>
         <Input
           message={message}

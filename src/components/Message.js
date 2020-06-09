@@ -1,7 +1,7 @@
 import { h } from "preact";
 import { useState } from "preact/hooks";
 
-const Message = ({ message: { text, user, type } = {}, name, sendMessage }) => {
+const Message = ({ message: { text, user, type } = {}, name, sendQuestion, sendAnswer }) => {
   const [question, setQuestion] = useState({});
   const [isAnswered, setAnswered] = useState(false)
   const [added, setAdded] = useState(false);
@@ -11,7 +11,7 @@ const Message = ({ message: { text, user, type } = {}, name, sendMessage }) => {
   const isMessageAnswer = type === 'answer'
   const trimmedName = name.trim().toLowerCase();
   let html;
-  console.log(user, "user name in message");
+  console.log(user, text, "user name in message");
   if (user === trimmedName) {
     isSentByCurrentUser = true;
   }
@@ -23,12 +23,12 @@ const Message = ({ message: { text, user, type } = {}, name, sendMessage }) => {
 
   const addQuestion = () => {
     setAdded(true);
-    sendMessage(null, true, question);
+    sendQuestion(question)
   };
 
-  const sendAnswer = (answer) => {
+  const addAnswer = (answer) => {
     setAnswered(true)
-    sendMessage(null, false, null, true, answer);
+    sendAnswer(answer, text.socketId);
   }
   if (isSentByCurrentUser) {
     if (isQuestion) {
@@ -141,7 +141,7 @@ const Message = ({ message: { text, user, type } = {}, name, sendMessage }) => {
             className="dib w-40 bn lh0 bg-purple white pa3 mv3 mh2 br4"
             onClick={(event) => {
               event.preventDefault();
-              sendAnswer(text.option1)
+              addAnswer(text.option1)
             }}
           >
             {text.option1}
@@ -151,7 +151,7 @@ const Message = ({ message: { text, user, type } = {}, name, sendMessage }) => {
             className="dib w-40 bn lh0 bg-purple white pa3 mv3 mh2 br4"
             onClick={(event) => {
               event.preventDefault();
-              sendAnswer(text.option2)
+              addAnswer(text.option2)
             }}
           >
             {text.option2}
@@ -161,7 +161,7 @@ const Message = ({ message: { text, user, type } = {}, name, sendMessage }) => {
             className="dib w-40 bn lh0 bg-purple white pa3 mv3 mh2 br4"
             onClick={(event) => {
               event.preventDefault();
-              sendAnswer(text.option3)
+              addAnswer(text.option3)
             }}
           >
             {text.option3}
@@ -171,7 +171,7 @@ const Message = ({ message: { text, user, type } = {}, name, sendMessage }) => {
             className="dib w-40 bn lh0 bg-purple white pa3 mv3 mh2 br4"
             onClick={(event) => {
               event.preventDefault();
-              sendAnswer(text.option4)
+              addAnswer(text.option4)
             }}
           >
             {text.option4}
