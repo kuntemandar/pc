@@ -65,7 +65,7 @@ export default ({ matches, url }) => {
     });
   }, []);
 
-  const sendMessage = (event, isQuestion, question) => {
+  const sendMessage = (event, isQuestion, question, isAnswer, answer) => {
     console.log(isQuestion,'isq')
     event && event.preventDefault()
     if (message.trim().toLowerCase() === "/question") {
@@ -73,7 +73,8 @@ export default ({ matches, url }) => {
       setMessage('')
     }
     else {
-      socket.emit("sendMessage", isQuestion ? question : message, isQuestion, () => setMessage(""));
+      const textToSend = answer || question || message
+      socket.emit("sendMessage", textToSend, isQuestion, isAnswer, () => setMessage(""));
     }
   };
 

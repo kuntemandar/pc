@@ -3,10 +3,12 @@ import { useState } from "preact/hooks";
 
 const Message = ({ message: { text, user, type } = {}, name, sendMessage }) => {
   const [question, setQuestion] = useState({});
+  const [isAnswered, setAnswered] = useState(false)
   const [added, setAdded] = useState(false);
   let isSentByCurrentUser = false;
   let isQuestion = false;
-  const isMessageQuestion = type === "question";
+  const isMessageQuestion = type === "question" 
+  const isMessageAnswer = type === 'answer'
   const trimmedName = name.trim().toLowerCase();
   let html;
   console.log(user, "user name in message");
@@ -23,6 +25,11 @@ const Message = ({ message: { text, user, type } = {}, name, sendMessage }) => {
     setAdded(true);
     sendMessage(null, true, question);
   };
+
+  const sendAnswer = (answer) => {
+    setAnswered(true)
+    sendMessage(null, false, null, true, answer);
+  }
   if (isSentByCurrentUser) {
     if (isQuestion) {
       html = (
@@ -112,7 +119,7 @@ const Message = ({ message: { text, user, type } = {}, name, sendMessage }) => {
           </button>
         </div>
       );
-    } else if (!isMessageQuestion) {
+    } else if (!isMessageQuestion && !isMessageAnswer) {
       html = (
         <div data-e2e="self-message" className="flex ph1 mt1 justify-end">
           <div className="white br2 pl1 bg-purple">
@@ -127,15 +134,47 @@ const Message = ({ message: { text, user, type } = {}, name, sendMessage }) => {
         <label
         disabled
             data-e2e="question-label"
-            className="flex items-center dib bg-washed-yellow w-90 pl2 ma1 bn br3 h2p5"
+            className="flex items-center dib bg-washed-yellow pl2 ma1 bn br3 h2p5"
           >{text.query}</label>
           <button
+            disabled={isAnswered}
             className="dib w-40 bn lh0 bg-purple white pa3 mv3 mh2 br4"
             onClick={(event) => {
               event.preventDefault();
+              sendAnswer(text.option1)
             }}
           >
             {text.option1}
+          </button>
+          <button
+          disabled={isAnswered}
+            className="dib w-40 bn lh0 bg-purple white pa3 mv3 mh2 br4"
+            onClick={(event) => {
+              event.preventDefault();
+              sendAnswer(text.option2)
+            }}
+          >
+            {text.option2}
+          </button>
+          <button
+          disabled={isAnswered}
+            className="dib w-40 bn lh0 bg-purple white pa3 mv3 mh2 br4"
+            onClick={(event) => {
+              event.preventDefault();
+              sendAnswer(text.option3)
+            }}
+          >
+            {text.option3}
+          </button>
+          <button
+          disabled={isAnswered}
+            className="dib w-40 bn lh0 bg-purple white pa3 mv3 mh2 br4"
+            onClick={(event) => {
+              event.preventDefault();
+              sendAnswer(text.option4)
+            }}
+          >
+            {text.option4}
           </button>
       </div>;
     } else {

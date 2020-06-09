@@ -2,7 +2,7 @@ import { h } from "preact";
 import Message from "./Message";
 import { useEffect, useRef } from "preact/hooks";
 
-const Messages = ({ messages, name, sendMessage }) => {
+const Messages = ({ messages, name, sendMessage}) => {
   const messageListRef = useRef(false);
 
   useEffect(() => {
