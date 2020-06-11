@@ -98,7 +98,7 @@ export default ({ matches, url }) => {
   return (
     <div data-e2e="chat-container">
       <div className="conatiner flex flex-column justify-between h3">
-        <InfoBar room={room} disconnect={disconnect} />
+        <InfoBar name={name} room={room} disconnect={disconnect} />
         <div className="min-h-80 overflow-y-auto">
           <Messages
             sendQuestion={sendQuestion}

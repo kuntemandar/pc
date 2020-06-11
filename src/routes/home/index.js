@@ -44,7 +44,6 @@ const Home = () => {
         >
           Login
         </button>
-        <a dat-e2e='create-class-button' className='underline dark-blue' href='#'>Create a new Classroom</a>
       </form>
     </div>
     <Footer />

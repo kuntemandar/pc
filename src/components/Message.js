@@ -16,7 +16,7 @@ const Message = ({ message: { text, user, type } = {}, name, sendQuestion, sendA
     isSentByCurrentUser = true;
   }
 
-  if (text === "/question") {
+  if (text === "?ask") {
     isQuestion = true;
   }
   console.log("text", text);
@@ -42,13 +42,13 @@ const Message = ({ message: { text, user, type } = {}, name, sendQuestion, sendA
             onChange={({ target: { value } }) => {
               setQuestion((prevState) => ({
                 ...prevState,
-                query: `${value}?`,
+                query: `${value} ?`,
               }));
             }}
             placeholder="Your Question here..."
             className="bg-washed-yellow w-90 pl2 ma1 bn br3 h2p5"
           />
-          <input
+          {(!added || question.option1) && <input
             data-e2e="option1-input"
             id="option1"
             disabled={added}
@@ -56,13 +56,13 @@ const Message = ({ message: { text, user, type } = {}, name, sendQuestion, sendA
             onChange={({ target: { value, id } }) =>
               setQuestion((prevState) => ({
                 ...prevState,
-                [id]: `A: ${value}`,
+                [id]: `${value}`,
               }))
             }
             placeholder="Option 1"
             className=" w-90 pl3 ma1 bn br3 h2p5"
-          />
-          <input
+          />}
+          {(!added || question.option2) && <input
             data-e2e="option2-input"
             disabled={added}
             id="option2"
@@ -70,14 +70,14 @@ const Message = ({ message: { text, user, type } = {}, name, sendQuestion, sendA
             onChange={({ target: { value, id } }) =>
               setQuestion((prevState) => ({
                 ...prevState,
-                [id]: `B: ${value}`,
+                [id]: `${value}`,
               }))
             }
             id="option2"
             placeholder="Option 2"
             className=" w-90 pl3 ma1 bn br3 h2p5"
-          />
-          <input
+          />}
+          {(!added || question.option3) && <input
             data-e2e="option3-input"
             disabled={added}
             value={question.option3}
@@ -85,14 +85,14 @@ const Message = ({ message: { text, user, type } = {}, name, sendQuestion, sendA
             onChange={({ target: { value, id } }) =>
               setQuestion((prevState) => ({
                 ...prevState,
-                [id]: `C: ${value}`,
+                [id]: `${value}`,
               }))
             }
             id="option3"
             placeholder="Option 3"
             className=" w-90 pl3 ma1 bn br3 h2p5"
-          />
-          <input
+          />}
+          {(!added || question.option4) && <input
             disabled={added}
             id="option4"
             value={question.option4}
@@ -100,18 +100,19 @@ const Message = ({ message: { text, user, type } = {}, name, sendQuestion, sendA
             onChange={({ target: { value, id } }) =>
               setQuestion((prevState) => ({
                 ...prevState,
-                [id]: `D: ${value}`,
+                [id]: `${value}`,
               }))
             }
             id="option4"
             placeholder="Option 4"
             className=" w-90 pl3 ma1 bn br3 h2p5"
-          />
+          />}
           <button
             style={{ display: added ? "none" : "inline-block" }}
             className="bn lh0 bg-purple white pa3 mv3 mh2 br4"
             onClick={(event) => {
               event.preventDefault();
+              question && question.query && 
               addQuestion(event);
             }}
           >
@@ -136,7 +137,7 @@ const Message = ({ message: { text, user, type } = {}, name, sendQuestion, sendA
             data-e2e="question-label"
             className="flex items-center dib bg-washed-yellow pl2 ma1 bn br3 h2p5"
           >{text.query}</label>
-          <button
+          { text.option1 && <button
             disabled={isAnswered}
             className="dib w-40 bn lh0 bg-purple white pa3 mv3 mh2 br4"
             onClick={(event) => {
@@ -145,8 +146,8 @@ const Message = ({ message: { text, user, type } = {}, name, sendQuestion, sendA
             }}
           >
             {text.option1}
-          </button>
-          <button
+          </button>}
+          {text.option2 && <button
           disabled={isAnswered}
             className="dib w-40 bn lh0 bg-purple white pa3 mv3 mh2 br4"
             onClick={(event) => {
@@ -155,8 +156,8 @@ const Message = ({ message: { text, user, type } = {}, name, sendQuestion, sendA
             }}
           >
             {text.option2}
-          </button>
-          <button
+          </button>}
+          {text.option3 && <button
           disabled={isAnswered}
             className="dib w-40 bn lh0 bg-purple white pa3 mv3 mh2 br4"
             onClick={(event) => {
@@ -165,8 +166,8 @@ const Message = ({ message: { text, user, type } = {}, name, sendQuestion, sendA
             }}
           >
             {text.option3}
-          </button>
-          <button
+          </button>}
+          {text.option4 && <button
           disabled={isAnswered}
             className="dib w-40 bn lh0 bg-purple white pa3 mv3 mh2 br4"
             onClick={(event) => {
@@ -175,9 +176,9 @@ const Message = ({ message: { text, user, type } = {}, name, sendQuestion, sendA
             }}
           >
             {text.option4}
-          </button>
+          </button>}
       </div>;
-    } else {
+    } else if(!isQuestion) {
      html = <div data-e2e="other-message" className="flex ph1 mt1 justify-start">
         <div className="white br2 pl1 bg-white-90">
           <p className="w-100 ma2 ls-none fl wwrap-brk near-black">{text}</p>
