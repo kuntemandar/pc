@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "classnames": "^2.2.6",
-    "cypress": "^3.8.3",
+    "cypress": "^15.9.0",
     "preact": "^10.3.2",
     "preact-render-to-string": "^5.1.4",
     "preact-router": "^3.2.1",
